@@ -1,0 +1,509 @@
+{
+	"info": {
+		"_postman_id": "23d5bc5f-f963-403f-b46e-87e82f3d80dc",
+		"name": "MySpotify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13865645"
+	},
+	"item": [
+		{
+			"name": "List Tracks",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/tracks",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Track by id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "dummy",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/tracks/416da971-d0f5-41cf-9de8-0b59bf379bda",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tracks",
+						"416da971-d0f5-41cf-9de8-0b59bf379bda"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTrackByISRC",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "dummy",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/tracks/getTrackByISRC?isrc=USSM19801941",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tracks",
+						"getTrackByISRC"
+					],
+					"query": [
+						{
+							"key": "isrc",
+							"value": "USSM19801941"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Track by id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/tracks/8ea3337d-d8fd-491d-819d-703c1fe12c5d",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tracks",
+						"8ea3337d-d8fd-491d-819d-703c1fe12c5d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Track",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"b5f02b9f-4b3a-46f5-8ac4-9b846cda925d\",\r\n    \"name\": \"Blinding Lights\",\r\n    \"artistName\": \"The Weeknd\",\r\n    \"albumName\": \"After Hours\",\r\n    \"albumId\": \"3h1A6aSY9eQK0e8iWgn9J8\",\r\n    \"isExplicit\": false,\r\n    \"playbackSeconds\": 200\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/tracks",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Track Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Blinding Lights\",\r\n    \"artistName\": \"The Weeknd\",\r\n    \"albumName\": \"After Hours\",\r\n    \"albumId\": \"3h1A6aSY9eQK0e8iWgn9J8\",\r\n    \"isExplicit\": false,\r\n    \"playbackSeconds\": 200\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/api/tracks",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tracks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let json = pm.response.json();\r",
+							"pm.collectionVariables.set(\"token\", \"Bearer \"+json.access_token);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/auth/login?username=admin&password=myPassword",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"login"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "admin"
+						},
+						{
+							"key": "password",
+							"value": "myPassword"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://api.spotify.com/v1/search?q=isrc%3A%22USSM19801941%22&type=track&market=US",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer Dummy"
+					}
+				],
+				"url": {
+					"raw": "https://api.spotify.com/v1/search?q=isrc%3A%22USSM19801941%22&type=track&market=US",
+					"protocol": "https",
+					"host": [
+						"api",
+						"spotify",
+						"com"
+					],
+					"path": [
+						"v1",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "isrc%3A%22USSM19801941%22"
+						},
+						{
+							"key": "type",
+							"value": "track"
+						},
+						{
+							"key": "market",
+							"value": "US"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl --request GET \\\r\n  --url 'https://api.spotify.com/v1/search?q=isrc%3A%22USSM19801941%22&type=track&market=US' \\\r\n  --header 'Authorization: Bearer dummy'"
+			},
+			"response": [
+				{
+					"name": "https://api.spotify.com/v1/search?q=isrc%3A%22USSM19801941%22&type=track&market=US",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer dummy"
+							}
+						],
+						"url": {
+							"raw": "https://api.spotify.com/v1/search?q=isrc%3A%22USSM19801941%22&type=track&market=US",
+							"protocol": "https",
+							"host": [
+								"api",
+								"spotify",
+								"com"
+							],
+							"path": [
+								"v1",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "isrc%3A%22USSM19801941%22"
+								},
+								{
+									"key": "type",
+									"value": "track"
+								},
+								{
+									"key": "market",
+									"value": "US"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "cache-control",
+							"value": "public, max-age=0"
+						},
+						{
+							"key": "etag",
+							"value": "\"MC-IjMyZWY4NmQzYmRhNmEyZDM3M2U4YzdkODdiYThmYzMwIg==\""
+						},
+						{
+							"key": "x-robots-tag",
+							"value": "noindex, nofollow"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "access-control-allow-headers",
+							"value": "Accept, App-Platform, Authorization, Content-Type, Origin, Retry-After, Spotify-App-Version, X-Cloud-Trace-Context, client-token, content-access-token"
+						},
+						{
+							"key": "access-control-allow-methods",
+							"value": "GET, POST, OPTIONS, PUT, DELETE, PATCH"
+						},
+						{
+							"key": "access-control-allow-credentials",
+							"value": "true"
+						},
+						{
+							"key": "access-control-max-age",
+							"value": "604800"
+						},
+						{
+							"key": "content-encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=31536000"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "date",
+							"value": "Fri, 07 Feb 2025 08:06:13 GMT"
+						},
+						{
+							"key": "server",
+							"value": "envoy"
+						},
+						{
+							"key": "Via",
+							"value": "HTTP/2 edgeproxy, 1.1 google"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"tracks\": {\n        \"href\": \"https://api.spotify.com/v1/search?offset=0&limit=20&query=isrc%3A%22USSM19801941%22&type=track&market=US\",\n        \"limit\": 20,\n        \"next\": \"https://api.spotify.com/v1/search?offset=20&limit=20&query=isrc%3A%22USSM19801941%22&type=track&market=US\",\n        \"offset\": 0,\n        \"previous\": null,\n        \"total\": 48,\n        \"items\": [\n            {\n                \"album\": {\n                    \"album_type\": \"album\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                            \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                            \"name\": \"TOTO\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/62U7xIHcID94o20Of5ea4D\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/62U7xIHcID94o20Of5ea4D\",\n                    \"id\": \"62U7xIHcID94o20Of5ea4D\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2734a052b99c042dc15f933145b\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e024a052b99c042dc15f933145b\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048514a052b99c042dc15f933145b\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Toto IV\",\n                    \"release_date\": \"1982-04-08\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 10,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:62U7xIHcID94o20Of5ea4D\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295893,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/2374M0fQpWi3dLnB54qaLX\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/2374M0fQpWi3dLnB54qaLX\",\n                \"id\": \"2374M0fQpWi3dLnB54qaLX\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 84,\n                \"preview_url\": null,\n                \"track_number\": 10,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:2374M0fQpWi3dLnB54qaLX\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/0CTCk1eshEadFqZ4NBfe9N\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/0CTCk1eshEadFqZ4NBfe9N\",\n                    \"id\": \"0CTCk1eshEadFqZ4NBfe9N\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273bd0db295c0164ddbc0584ebb\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02bd0db295c0164ddbc0584ebb\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851bd0db295c0164ddbc0584ebb\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Stranger Things (Soundtrack from the Netflix Original Series)\",\n                    \"release_date\": \"2017-10-27\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 30,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:0CTCk1eshEadFqZ4NBfe9N\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 296400,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/3h4h7LYcudzLLRX2dJU6st\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/3h4h7LYcudzLLRX2dJU6st\",\n                \"id\": \"3h4h7LYcudzLLRX2dJU6st\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 44,\n                \"preview_url\": null,\n                \"track_number\": 16,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:3h4h7LYcudzLLRX2dJU6st\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                            \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                            \"name\": \"TOTO\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/5ChYBNgy8o2ps5716s1GH2\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/5ChYBNgy8o2ps5716s1GH2\",\n                    \"id\": \"5ChYBNgy8o2ps5716s1GH2\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273f8c5b4b15e315515124d6c62\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02f8c5b4b15e315515124d6c62\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851f8c5b4b15e315515124d6c62\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Greatest Hits: 40 Trips Around The Sun\",\n                    \"release_date\": \"2018-02-09\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 17,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:5ChYBNgy8o2ps5716s1GH2\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295346,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/6QZo2TgclkUMwJgggi8QSQ\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/6QZo2TgclkUMwJgggi8QSQ\",\n                \"id\": \"6QZo2TgclkUMwJgggi8QSQ\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 40,\n                \"preview_url\": null,\n                \"track_number\": 17,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:6QZo2TgclkUMwJgggi8QSQ\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/3C20zCOVCXIb9xr0Z6wcCG\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/3C20zCOVCXIb9xr0Z6wcCG\",\n                    \"id\": \"3C20zCOVCXIb9xr0Z6wcCG\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273c722845f4d534fee30ab6d0f\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02c722845f4d534fee30ab6d0f\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851c722845f4d534fee30ab6d0f\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"80 Totally 80s Hits\",\n                    \"release_date\": \"2014-03-03\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 80,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:3C20zCOVCXIb9xr0Z6wcCG\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 294133,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/42uZezaPwnVyYyfh2aHo6p\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/42uZezaPwnVyYyfh2aHo6p\",\n                \"id\": \"42uZezaPwnVyYyfh2aHo6p\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 26,\n                \"preview_url\": null,\n                \"track_number\": 18,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:42uZezaPwnVyYyfh2aHo6p\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                            \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                            \"name\": \"TOTO\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/5QB4Ykf95muHSKHmc4oOL3\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/5QB4Ykf95muHSKHmc4oOL3\",\n                    \"id\": \"5QB4Ykf95muHSKHmc4oOL3\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b27352cc0969572e48332f0bf982\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e0252cc0969572e48332f0bf982\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000485152cc0969572e48332f0bf982\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"The Essential Toto\",\n                    \"release_date\": \"2014-06-23\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 33,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:5QB4Ykf95muHSKHmc4oOL3\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 296200,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/0TBbk62VYwmuf4RDu31jZF\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/0TBbk62VYwmuf4RDu31jZF\",\n                \"id\": \"0TBbk62VYwmuf4RDu31jZF\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 31,\n                \"preview_url\": null,\n                \"track_number\": 14,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:0TBbk62VYwmuf4RDu31jZF\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/5uJ3FfBJ9CdGcEcCZZxiCr\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/5uJ3FfBJ9CdGcEcCZZxiCr\",\n                    \"id\": \"5uJ3FfBJ9CdGcEcCZZxiCr\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b27385deca38cf1f83e7bff2b6c9\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e0285deca38cf1f83e7bff2b6c9\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000485185deca38cf1f83e7bff2b6c9\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Hits Of The 80s (100 Songs)\",\n                    \"release_date\": \"2009-01-16\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 100,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:5uJ3FfBJ9CdGcEcCZZxiCr\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 296600,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/3ekitmVGEcRakDh02BWVHk\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/3ekitmVGEcRakDh02BWVHk\",\n                \"id\": \"3ekitmVGEcRakDh02BWVHk\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 15,\n                \"preview_url\": null,\n                \"track_number\": 14,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:3ekitmVGEcRakDh02BWVHk\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/7GpHm9kcUcSMYT6CPGURzS\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/7GpHm9kcUcSMYT6CPGURzS\",\n                    \"id\": \"7GpHm9kcUcSMYT6CPGURzS\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273a5fa78dddb3c3de74b380942\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02a5fa78dddb3c3de74b380942\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851a5fa78dddb3c3de74b380942\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Soft Rock 80's\",\n                    \"release_date\": \"2008-06-24\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 25,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:7GpHm9kcUcSMYT6CPGURzS\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295840,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/3poNOeOqLvJT8Mgfb5xHNP\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/3poNOeOqLvJT8Mgfb5xHNP\",\n                \"id\": \"3poNOeOqLvJT8Mgfb5xHNP\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 11,\n                \"preview_url\": null,\n                \"track_number\": 13,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:3poNOeOqLvJT8Mgfb5xHNP\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/5N908fN8d6jKcxsFVLxlt3\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/5N908fN8d6jKcxsFVLxlt3\",\n                    \"id\": \"5N908fN8d6jKcxsFVLxlt3\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b27325d1f72611ce3b962e4f9100\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e0225d1f72611ce3b962e4f9100\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000485125d1f72611ce3b962e4f9100\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Soirée d'été : Summer Hits Mix 2022\",\n                    \"release_date\": \"2022-07-02\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 58,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:5N908fN8d6jKcxsFVLxlt3\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295293,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/7wBZFQpwcTmHJdbKFK98HN\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/7wBZFQpwcTmHJdbKFK98HN\",\n                \"id\": \"7wBZFQpwcTmHJdbKFK98HN\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 20,\n                \"preview_url\": null,\n                \"track_number\": 12,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:7wBZFQpwcTmHJdbKFK98HN\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/4hs21RLyO1mmUl68jgplez\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/4hs21RLyO1mmUl68jgplez\",\n                    \"id\": \"4hs21RLyO1mmUl68jgplez\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b27349fa98b5becffc8394622348\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e0249fa98b5becffc8394622348\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000485149fa98b5becffc8394622348\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Driving Anthems\",\n                    \"release_date\": \"2018-11-30\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 30,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:4hs21RLyO1mmUl68jgplez\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 296866,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/1tjV4ylOp8dRM9aeeilpw0\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/1tjV4ylOp8dRM9aeeilpw0\",\n                \"id\": \"1tjV4ylOp8dRM9aeeilpw0\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 14,\n                \"preview_url\": null,\n                \"track_number\": 1,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:1tjV4ylOp8dRM9aeeilpw0\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/79WstOylBF1QpisjWDNUdG\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/79WstOylBF1QpisjWDNUdG\",\n                    \"id\": \"79WstOylBF1QpisjWDNUdG\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2735c84bb5782c20e7ce5f7571a\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e025c84bb5782c20e7ce5f7571a\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048515c84bb5782c20e7ce5f7571a\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Românticas Anos 80\",\n                    \"release_date\": \"2019-02-15\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 58,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:79WstOylBF1QpisjWDNUdG\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295293,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/09viLGoO3UhtsbiPFNyQQC\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/09viLGoO3UhtsbiPFNyQQC\",\n                \"id\": \"09viLGoO3UhtsbiPFNyQQC\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 25,\n                \"preview_url\": null,\n                \"track_number\": 17,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:09viLGoO3UhtsbiPFNyQQC\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/3iMFEXxylazdTrXHmGSTF3\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/3iMFEXxylazdTrXHmGSTF3\",\n                    \"id\": \"3iMFEXxylazdTrXHmGSTF3\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273d7385acc1c769b92527db8ed\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02d7385acc1c769b92527db8ed\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851d7385acc1c769b92527db8ed\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Pub Songs\",\n                    \"release_date\": \"2020-01-24\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 29,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:3iMFEXxylazdTrXHmGSTF3\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295893,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/4PhiGASESlpGx5mlBEyUO8\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/4PhiGASESlpGx5mlBEyUO8\",\n                \"id\": \"4PhiGASESlpGx5mlBEyUO8\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 13,\n                \"preview_url\": null,\n                \"track_number\": 14,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:4PhiGASESlpGx5mlBEyUO8\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/5MYyhtULiZGAy41yLRIGo9\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/5MYyhtULiZGAy41yLRIGo9\",\n                    \"id\": \"5MYyhtULiZGAy41yLRIGo9\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2736f1b6e19277dc5ab9f06de81\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e026f1b6e19277dc5ab9f06de81\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048516f1b6e19277dc5ab9f06de81\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"80s Hits / Top 100 Songs\",\n                    \"release_date\": \"2023-06-13\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 60,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:5MYyhtULiZGAy41yLRIGo9\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295293,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/1Uc0yaJPCm2EPyqY9xSd9Z\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/1Uc0yaJPCm2EPyqY9xSd9Z\",\n                \"id\": \"1Uc0yaJPCm2EPyqY9xSd9Z\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 3,\n                \"preview_url\": null,\n                \"track_number\": 24,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:1Uc0yaJPCm2EPyqY9xSd9Z\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/4Q3SKcbOUmmQiwcbd0Lx3Z\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/4Q3SKcbOUmmQiwcbd0Lx3Z\",\n                    \"id\": \"4Q3SKcbOUmmQiwcbd0Lx3Z\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2738def5e532b821a4c86ae6bfe\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e028def5e532b821a4c86ae6bfe\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048518def5e532b821a4c86ae6bfe\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Treino Pop 2023\",\n                    \"release_date\": \"2023-06-12\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 57,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:4Q3SKcbOUmmQiwcbd0Lx3Z\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295293,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/7KAFa0x0SV6Qb4nXRakvIR\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/7KAFa0x0SV6Qb4nXRakvIR\",\n                \"id\": \"7KAFa0x0SV6Qb4nXRakvIR\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 1,\n                \"preview_url\": null,\n                \"track_number\": 47,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:7KAFa0x0SV6Qb4nXRakvIR\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/59I6ujIhBwXfVlG03TladZ\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/59I6ujIhBwXfVlG03TladZ\",\n                    \"id\": \"59I6ujIhBwXfVlG03TladZ\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273356ab25b493d82fc503dfd0c\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02356ab25b493d82fc503dfd0c\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851356ab25b493d82fc503dfd0c\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Labor Day Weekend\",\n                    \"release_date\": \"2022-05-27\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 92,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:59I6ujIhBwXfVlG03TladZ\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295720,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/2gNT2VP3OJQ11vTNS4IE9w\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/2gNT2VP3OJQ11vTNS4IE9w\",\n                \"id\": \"2gNT2VP3OJQ11vTNS4IE9w\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 1,\n                \"preview_url\": null,\n                \"track_number\": 26,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:2gNT2VP3OJQ11vTNS4IE9w\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/45iq9J0CiZUSEmyO8A1AO9\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/45iq9J0CiZUSEmyO8A1AO9\",\n                    \"id\": \"45iq9J0CiZUSEmyO8A1AO9\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2738834c6e0b3b0a6fa55a77d6a\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e028834c6e0b3b0a6fa55a77d6a\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048518834c6e0b3b0a6fa55a77d6a\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"O Melhor do Pop Internacional\",\n                    \"release_date\": \"2022-07-22\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 60,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:45iq9J0CiZUSEmyO8A1AO9\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295346,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/7aRcAsuwCwVRCodVuyOrL2\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/7aRcAsuwCwVRCodVuyOrL2\",\n                \"id\": \"7aRcAsuwCwVRCodVuyOrL2\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 6,\n                \"preview_url\": null,\n                \"track_number\": 33,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:7aRcAsuwCwVRCodVuyOrL2\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/6JKRT6oYzgzL8RTnBIkNAT\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/6JKRT6oYzgzL8RTnBIkNAT\",\n                    \"id\": \"6JKRT6oYzgzL8RTnBIkNAT\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273b2937959602576b91c3f04ed\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02b2937959602576b91c3f04ed\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851b2937959602576b91c3f04ed\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Pop para Trabalhar 2023\",\n                    \"release_date\": \"2023-06-12\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 57,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:6JKRT6oYzgzL8RTnBIkNAT\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295293,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/6I22GE6IcxhFlDkPx7RpBH\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/6I22GE6IcxhFlDkPx7RpBH\",\n                \"id\": \"6I22GE6IcxhFlDkPx7RpBH\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 0,\n                \"preview_url\": null,\n                \"track_number\": 47,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:6I22GE6IcxhFlDkPx7RpBH\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/7wuSwTZXsxsUlXCPfTX2vh\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/7wuSwTZXsxsUlXCPfTX2vh\",\n                    \"id\": \"7wuSwTZXsxsUlXCPfTX2vh\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2733d2303e9329b3aa2ace58d33\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e023d2303e9329b3aa2ace58d33\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048513d2303e9329b3aa2ace58d33\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"4th of July\",\n                    \"release_date\": \"2022-05-27\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 92,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:7wuSwTZXsxsUlXCPfTX2vh\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295720,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/55CKplapKgsUB696KEsfL3\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/55CKplapKgsUB696KEsfL3\",\n                \"id\": \"55CKplapKgsUB696KEsfL3\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 3,\n                \"preview_url\": null,\n                \"track_number\": 26,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:55CKplapKgsUB696KEsfL3\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/5fI5TfSFvqxqqFGAfavk2D\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/5fI5TfSFvqxqqFGAfavk2D\",\n                    \"id\": \"5fI5TfSFvqxqqFGAfavk2D\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273ef80daf967cb74b7f3ba487d\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02ef80daf967cb74b7f3ba487d\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851ef80daf967cb74b7f3ba487d\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Best Rugby Songs 2023\",\n                    \"release_date\": \"2023-08-25\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 39,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:5fI5TfSFvqxqqFGAfavk2D\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 298386,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/4vLn60tbmROXZ3xm1SaDQv\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/4vLn60tbmROXZ3xm1SaDQv\",\n                \"id\": \"4vLn60tbmROXZ3xm1SaDQv\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 2,\n                \"preview_url\": null,\n                \"track_number\": 10,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:4vLn60tbmROXZ3xm1SaDQv\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/3PplPsOfqSyX47xnRA8Wz5\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/3PplPsOfqSyX47xnRA8Wz5\",\n                    \"id\": \"3PplPsOfqSyX47xnRA8Wz5\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b2736a47c765d24dd8669edc7626\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e026a47c765d24dd8669edc7626\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d000048516a47c765d24dd8669edc7626\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"Memorial Day Weekend\",\n                    \"release_date\": \"2022-05-27\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 92,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:3PplPsOfqSyX47xnRA8Wz5\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295720,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/5fvrqfcbcgGx49rcXvELCO\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/5fvrqfcbcgGx49rcXvELCO\",\n                \"id\": \"5fvrqfcbcgGx49rcXvELCO\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 1,\n                \"preview_url\": null,\n                \"track_number\": 26,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:5fvrqfcbcgGx49rcXvELCO\"\n            },\n            {\n                \"album\": {\n                    \"album_type\": \"compilation\",\n                    \"artists\": [\n                        {\n                            \"external_urls\": {\n                                \"spotify\": \"https://open.spotify.com/artist/0LyfQWJT6nXafLPZqxe9Of\"\n                            },\n                            \"href\": \"https://api.spotify.com/v1/artists/0LyfQWJT6nXafLPZqxe9Of\",\n                            \"id\": \"0LyfQWJT6nXafLPZqxe9Of\",\n                            \"name\": \"Various Artists\",\n                            \"type\": \"artist\",\n                            \"uri\": \"spotify:artist:0LyfQWJT6nXafLPZqxe9Of\"\n                        }\n                    ],\n                    \"external_urls\": {\n                        \"spotify\": \"https://open.spotify.com/album/0HCbRJGrvEyYxMTbqJFQOG\"\n                    },\n                    \"href\": \"https://api.spotify.com/v1/albums/0HCbRJGrvEyYxMTbqJFQOG\",\n                    \"id\": \"0HCbRJGrvEyYxMTbqJFQOG\",\n                    \"images\": [\n                        {\n                            \"height\": 640,\n                            \"width\": 640,\n                            \"url\": \"https://i.scdn.co/image/ab67616d0000b273facf9d54b9dfe810241e37ea\"\n                        },\n                        {\n                            \"height\": 300,\n                            \"width\": 300,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00001e02facf9d54b9dfe810241e37ea\"\n                        },\n                        {\n                            \"height\": 64,\n                            \"width\": 64,\n                            \"url\": \"https://i.scdn.co/image/ab67616d00004851facf9d54b9dfe810241e37ea\"\n                        }\n                    ],\n                    \"is_playable\": true,\n                    \"name\": \"L'été au calme : Chill 2022 hits\",\n                    \"release_date\": \"2022-07-02\",\n                    \"release_date_precision\": \"day\",\n                    \"total_tracks\": 42,\n                    \"type\": \"album\",\n                    \"uri\": \"spotify:album:0HCbRJGrvEyYxMTbqJFQOG\"\n                },\n                \"artists\": [\n                    {\n                        \"external_urls\": {\n                            \"spotify\": \"https://open.spotify.com/artist/0PFtn5NtBbbUNbU9EAmIWF\"\n                        },\n                        \"href\": \"https://api.spotify.com/v1/artists/0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"id\": \"0PFtn5NtBbbUNbU9EAmIWF\",\n                        \"name\": \"TOTO\",\n                        \"type\": \"artist\",\n                        \"uri\": \"spotify:artist:0PFtn5NtBbbUNbU9EAmIWF\"\n                    }\n                ],\n                \"disc_number\": 1,\n                \"duration_ms\": 295293,\n                \"explicit\": false,\n                \"external_ids\": {\n                    \"isrc\": \"USSM19801941\"\n                },\n                \"external_urls\": {\n                    \"spotify\": \"https://open.spotify.com/track/080SHSYuEIjE1OzNrC0CpA\"\n                },\n                \"href\": \"https://api.spotify.com/v1/tracks/080SHSYuEIjE1OzNrC0CpA\",\n                \"id\": \"080SHSYuEIjE1OzNrC0CpA\",\n                \"is_local\": false,\n                \"is_playable\": true,\n                \"name\": \"Africa\",\n                \"popularity\": 2,\n                \"preview_url\": null,\n                \"track_number\": 1,\n                \"type\": \"track\",\n                \"uri\": \"spotify:track:080SHSYuEIjE1OzNrC0CpA\"\n            }\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "spotify token",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/spotify/getAccessToken",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"spotify",
+						"getAccessToken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Tracks from Spotify",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/spotify/search/track?isrc=USSM19801941",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"spotify",
+						"search",
+						"track"
+					],
+					"query": [
+						{
+							"key": "isrc",
+							"value": "USSM19801941"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Track from ISRC",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/api/tracks/createTrack?isrc=USSM19801941",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"tracks",
+						"createTrack"
+					],
+					"query": [
+						{
+							"key": "isrc",
+							"value": "USSM19801941"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}
